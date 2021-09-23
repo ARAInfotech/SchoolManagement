@@ -69,7 +69,7 @@ namespace WebAPI.Controller
         /// <returns></returns>
         [HttpGet]
         [Authorize]
-        public IEnumerable<WeatherForecast> Index()
+        public APIReturnModel<List<WeatherForecast>> Index()
         {
             //throw new Exception("Test Exception");
 
@@ -77,12 +77,16 @@ namespace WebAPI.Controller
 
             string s = _configurationManager.GetConfigValue("ApplicationName");
 
-            return Enumerable.Range(1, 5).Select(i => new WeatherForecast
+            List<WeatherForecast> objModel = Enumerable.Range(1, 5).Select(i => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(i),
                 TempC = rng.Next(-20, 55),
                 Summary = Summeries[rng.Next(Summeries.Length)]
-            }).ToArray();
+            }).ToList();
+
+            APIReturnModel<List<WeatherForecast>> response = ReturnData.SuccessResponse<List<WeatherForecast>>(objModel);
+
+            return response;
         }
         #endregion
 
@@ -93,13 +97,13 @@ namespace WebAPI.Controller
         /// <param name="login"></param>
         /// <returns></returns>
         [HttpPost("Login")]
-        public IActionResult Login (UserModel login)
+        public IActionResult Login(UserModel login)
         {
             IActionResult response = Unauthorized();
 
             UserModel user = AuthenticateUser(login);
 
-            if(user != null)
+            if (user != null)
             {
                 user.Token = GenerateJWTWebToken(user);
                 response = Ok(new { UserDetails = user });
@@ -116,9 +120,9 @@ namespace WebAPI.Controller
         /// <returns></returns>
         [HttpPost("GetAllUserDetails")]
         //[Authorize]
-        public IActionResult GetAllUserDetails(UserModel login)
+        public APIReturnModel<UserModel> GetAllUserDetails(UserModel login)
         {
-            IActionResult response = Unauthorized();
+            APIReturnModel<UserModel> response = new APIReturnModel<UserModel>();
 
             UserDomain dom = _weatherForecast.GetUserData(login.UserName, login.Password.EncryptPassword());
 
@@ -126,7 +130,11 @@ namespace WebAPI.Controller
             {
                 UserModel objModel = MapUserDomainToModel(dom);
 
-                response = Ok(new { UserDetails = objModel });
+                response = ReturnData.SuccessResponse<UserModel>(objModel);
+            }
+            else
+            {
+                response = ReturnData.ErrorResponse<UserModel>("User doesnot exist");
             }
 
             return response;
@@ -172,7 +180,7 @@ namespace WebAPI.Controller
         {
             UserModel user = null;
 
-            if(login.UserName == "Ajith" && login.Password.EncryptPassword() == "sI9PsHRaYcYfs/4pGXZpXu3Vjgc=")
+            if (login.UserName == "Ajith" && login.Password.EncryptPassword() == "sI9PsHRaYcYfs/4pGXZpXu3Vjgc=")
             {
                 user = new UserModel
                 {
