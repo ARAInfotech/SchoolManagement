@@ -31,7 +31,7 @@ namespace WebAPI.Common
         /// <param name="config"></param>
         public BaseController(IConfigurationManager config)
         {
-            _configurationManager = config;
+            this._configurationManager = config;
         }
         #endregion
     }

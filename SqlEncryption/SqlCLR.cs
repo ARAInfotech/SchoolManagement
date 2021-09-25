@@ -8,15 +8,15 @@ using System.Text;
 
 #region SqlCLR
 /// <summary>
-/// SqlCLR
+/// SQLCLR
 /// </summary>
 public static class SqlCLR
 {
     #region Variables
     /// <summary>
-    /// key
+    /// Key
     /// </summary>
-    private static readonly string key = "7007zu99r1v7696af11f9e7996af11fe";
+    private static readonly string Key = "7007zu99r1v7696af11f9e7996af11fe";
     #endregion
 
     #region Public Methods
@@ -27,7 +27,7 @@ public static class SqlCLR
     /// </summary>
     /// <param name="str"></param>
     /// <returns></returns>
-    [SqlFunction()]
+    [SqlFunction]
     public static string Encrypt(string str)
     {
         byte[] iv = new byte[16];
@@ -36,7 +36,7 @@ public static class SqlCLR
 
         using (Rijndael aes = Rijndael.Create())
         {
-            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.Key = Encoding.UTF8.GetBytes(Key);
             aes.IV = iv;
 
             ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
@@ -65,7 +65,7 @@ public static class SqlCLR
     /// </summary>
     /// <param name="str"></param>
     /// <returns></returns>
-    [SqlFunction()]
+    [SqlFunction]
     public static string Decrypt(string str)
     {
         byte[] iv = new byte[16];
@@ -73,7 +73,7 @@ public static class SqlCLR
 
         using (Rijndael aes = Rijndael.Create())
         {
-            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.Key = Encoding.UTF8.GetBytes(Key);
             aes.IV = iv;
             ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
 
@@ -94,4 +94,3 @@ public static class SqlCLR
     #endregion
 }
 #endregion
-

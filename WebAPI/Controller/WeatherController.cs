@@ -33,8 +33,8 @@ namespace WebAPI.Controller
         /// <param name="config"></param>
         public WeatherController(IConfigurationManager config, IWeatherForecast weatherForecast)
         {
-            _weatherForecast = weatherForecast;
-            _configurationManager = config;
+            this._weatherForecast = weatherForecast;
+            this._configurationManager = config;
         }
         #endregion
 
@@ -75,7 +75,7 @@ namespace WebAPI.Controller
 
             var rng = new Random();
 
-            string s = _configurationManager.GetConfigValue("ApplicationName");
+            string s = this._configurationManager.GetConfigValue("ApplicationName");
 
             List<WeatherForecast> objModel = Enumerable.Range(1, 5).Select(i => new WeatherForecast
             {
@@ -101,12 +101,12 @@ namespace WebAPI.Controller
         {
             IActionResult response = Unauthorized();
 
-            UserModel user = AuthenticateUser(login);
+            UserModel user = this.AuthenticateUser(login);
 
             if (user != null)
             {
-                user.Token = GenerateJWTWebToken(user);
-                response = Ok(new { UserDetails = user });
+                user.Token = this.GenerateJWTWebToken(user);
+                response = this.Ok(new { UserDetails = user });
             }
 
             return response;
@@ -124,11 +124,11 @@ namespace WebAPI.Controller
         {
             APIReturnModel<UserModel> response = new APIReturnModel<UserModel>();
 
-            UserDomain dom = _weatherForecast.GetUserData(login.UserName, login.Password.EncryptPassword());
+            UserDomain dom = this._weatherForecast.GetUserData(login.UserName, login.Password.EncryptPassword());
 
             if (dom != null)
             {
-                UserModel objModel = MapUserDomainToModel(dom);
+                UserModel objModel = this.MapUserDomainToModel(dom);
 
                 response = ReturnData.SuccessResponse<UserModel>(objModel);
             }
@@ -153,14 +153,14 @@ namespace WebAPI.Controller
         /// <returns></returns>
         private string GenerateJWTWebToken(UserModel user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configurationManager.GetJWTConfig("Key")));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configurationManager.GetJWTConfig("Key")));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new List<Claim>
             {
                 new Claim("UserID", user.EncUserID)
             };
 
-            var token = new JwtSecurityToken(_configurationManager.GetJWTConfig("Issuer"), _configurationManager.GetJWTConfig("Issuer"),
+            var token = new JwtSecurityToken(this._configurationManager.GetJWTConfig("Issuer"), this._configurationManager.GetJWTConfig("Issuer"),
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(120),
                 signingCredentials: credentials
@@ -215,7 +215,7 @@ namespace WebAPI.Controller
             model.MobileNumber = dom.MobileNumber;
             model.EncModifiedBy = dom.ModifiedBy.Encrypt();
             model.ModifiedDate = dom.ModifiedDate;
-            model.Token = GenerateJWTWebToken(model);
+            model.Token = this.GenerateJWTWebToken(model);
 
             return model;
         }

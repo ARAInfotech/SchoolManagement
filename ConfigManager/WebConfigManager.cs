@@ -19,6 +19,10 @@ namespace ConfigManager
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="_configuration"></param>
         public WebConfigManager(IConfiguration _configuration)
         {
             configuration = _configuration;

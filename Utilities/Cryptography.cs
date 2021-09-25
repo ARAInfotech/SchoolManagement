@@ -74,17 +74,17 @@ namespace Utilities
         }
         #endregion
 
-        #region EncryptCommaSeperatedString
+        #region EncryptCommaSeparatedString
         /// <summary>
-        /// EncryptCommaSeperatedString
+        /// EncryptCommaSeparatedString
         /// </summary>
-        /// <param name="commaSeperatedString"></param>
+        /// <param name="commaSeparatedString"></param>
         /// <returns></returns>
-        public static string EncryptCommaSeperatedString(this string commaSeperatedString)
+        public static string EncryptCommaSeparatedString(this string commaSeparatedString)
         {
             StringBuilder encCommaSeperatedString = new StringBuilder();
 
-            List<string> lstString = commaSeperatedString.Split(',').ToList();
+            List<string> lstString = commaSeparatedString.Split(',').ToList();
 
             foreach(string s in lstString)
             {
@@ -107,17 +107,17 @@ namespace Utilities
         }
         #endregion
 
-        #region DecryptCommaSeperated
+        #region DecryptCommaSeparated
         /// <summary>
-        /// DecryptCommaSeperated
+        /// DecryptCommaSeparated
         /// </summary>
-        /// <param name="commaSeperatedString"></param>
+        /// <param name="commaSeparatedString"></param>
         /// <returns></returns>
-        public static string DecryptCommaSeperated(this string commaSeperatedString)
+        public static string DecryptCommaSeparated(this string commaSeparatedString)
         {
             StringBuilder decryptedString = new StringBuilder();
 
-            List<string> lstString = commaSeperatedString.Split(',').ToList();
+            List<string> lstString = commaSeparatedString.Split(',').ToList();
 
             foreach (string s in lstString)
             {

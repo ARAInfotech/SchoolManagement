@@ -12,7 +12,7 @@ namespace WebAPI.Model
     {
         #region EncUserID
         /// <summary>
-        /// EncUserID
+        /// EncryptedUserID
         /// </summary>
         public string EncUserID { get; set; }
         #endregion
@@ -61,7 +61,7 @@ namespace WebAPI.Model
 
         #region EncCreatedBy
         /// <summary>
-        /// EncCreatedBy
+        /// EncryptedCreatedBy
         /// </summary>
         public string EncCreatedBy { get; set; }
         #endregion
@@ -75,7 +75,7 @@ namespace WebAPI.Model
 
         #region EncModifiedBy
         /// <summary>
-        /// EncModifiedBy
+        /// EncryptedModifiedBy
         /// </summary>
         public string EncModifiedBy { get; set; }
         #endregion
