@@ -33,6 +33,7 @@ namespace WebAPI
             services.AddTokenAuthentication(Configuration);
             services.AddSingleton<IConfigurationManager, WebConfigManager>();
             services.AddScoped<IWeatherForecast, WeatherForecastBLL>();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +61,11 @@ namespace WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyWebApi");
             });
         }
     }
