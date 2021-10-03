@@ -72,6 +72,20 @@ namespace ConfigManager
         }
         #endregion
 
+        #region GetEmailConfig
+        /// <summary>
+        /// GetEmailConfig
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public string GetEmailConfig(string key)
+        {
+            string value = configuration.GetSection("Email").GetSection(key).Value.ToString();
+
+            return value;
+        }
+        #endregion
+
         #endregion
     }
     #endregion
