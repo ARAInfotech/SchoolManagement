@@ -107,6 +107,54 @@ namespace Utilities
         }
         #endregion
 
+        #region DecryptToLong
+        /// <summary>
+        /// DecryptToLong
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns></returns>
+        public static long DecryptToLong(this string cipherText)
+        {
+            return Convert.ToInt64(DecryptString(cipherText.Trim()));
+        }
+        #endregion
+
+        #region DecryptToInt
+        /// <summary>
+        /// DecryptToInteger
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns></returns>
+        public static int DecryptToInt(this string cipherText)
+        {
+            return Convert.ToInt32(DecryptString(cipherText.Trim()));
+        }
+        #endregion
+
+        #region DecryptToDecimal
+        /// <summary>
+        /// DecryptToDecimal
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns></returns>
+        public static decimal DecryptToDecimal(this string cipherText)
+        {
+            return Convert.ToDecimal(DecryptString(cipherText.Trim()));
+        }
+        #endregion
+
+        #region DecryptToDouble
+        /// <summary>
+        /// DecryptToDouble
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns></returns>
+        public static double DecryptToDouble(this string cipherText)
+        {
+            return Convert.ToDouble(DecryptString(cipherText.Trim()));
+        }
+        #endregion
+
         #region DecryptCommaSeparated
         /// <summary>
         /// DecryptCommaSeparated
