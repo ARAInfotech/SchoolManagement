@@ -23,7 +23,7 @@ namespace WebAPI.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static APIReturnModel<T> SuccessResponse<T>(T obj) where T : class, new()
+        public static APIReturnModel<T> SuccessResponse<T>(T obj)
         {
             APIReturnModel<T> returnModel = new APIReturnModel<T>();
 
@@ -43,13 +43,32 @@ namespace WebAPI.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public static APIReturnModel<T> ErrorResponse<T>(string errorMessage) where T : class, new()
+        public static APIReturnModel<T> ErrorResponse<T>(string errorMessage)
         {
             APIReturnModel<T> returnModel = new APIReturnModel<T>();
 
             returnModel.ErrorMessage = errorMessage;
             returnModel.IsSuccess = false;
-            returnModel.Result = null;
+            returnModel.Result = (T)(object)null; ;
+            returnModel.IsError = true;
+
+            return returnModel;
+        }
+        #endregion
+
+        #region InvalidRequestResponse
+        /// <summary>
+        /// InvalidRequestResponse
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static APIReturnModel<T> InvalidRequestResponse<T>()
+        {
+            APIReturnModel<T> returnModel = new APIReturnModel<T>();
+
+            returnModel.ErrorMessage = "Invalid request";
+            returnModel.IsSuccess = false;
+            returnModel.Result = (T)(object)null;
             returnModel.IsError = true;
 
             return returnModel;

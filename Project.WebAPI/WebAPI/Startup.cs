@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using WebAPI.BLL;
 using WebAPI.BLL.DI;
 using WebAPI.BLL.Interface;
+using WebAPI.BLL.Interface.Login;
 using WebAPI.Helpers;
 using WebAPI.Middleware;
 #endregion
@@ -33,6 +34,7 @@ namespace WebAPI
             services.AddTokenAuthentication(Configuration);
             services.AddSingleton<IConfigurationManager, WebConfigManager>();
             services.AddScoped<IWeatherForecast, WeatherForecastBLL>();
+            services.AddScoped<ILoginBLL, LoginBLL>();
             services.AddSwaggerGen();
         }
 

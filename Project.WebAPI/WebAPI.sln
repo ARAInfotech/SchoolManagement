@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigManager", "ConfigMana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEncryption", "SqlEncryption\SqlEncryption.csproj", "{2CBA09B6-B61E-4CAF-BBFF-99FA4E48CE30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailScheduler", "EmailScheduler\EmailScheduler.csproj", "{089B9E89-64A1-4689-96F0-2A83B029187B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.ConsoleApp", "Test.ConsoleApp\Test.ConsoleApp.csproj", "{3BD1917B-2497-41BD-9D7E-BF24205547DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{2CBA09B6-B61E-4CAF-BBFF-99FA4E48CE30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CBA09B6-B61E-4CAF-BBFF-99FA4E48CE30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CBA09B6-B61E-4CAF-BBFF-99FA4E48CE30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{089B9E89-64A1-4689-96F0-2A83B029187B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089B9E89-64A1-4689-96F0-2A83B029187B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089B9E89-64A1-4689-96F0-2A83B029187B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089B9E89-64A1-4689-96F0-2A83B029187B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BD1917B-2497-41BD-9D7E-BF24205547DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD1917B-2497-41BD-9D7E-BF24205547DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD1917B-2497-41BD-9D7E-BF24205547DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD1917B-2497-41BD-9D7E-BF24205547DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

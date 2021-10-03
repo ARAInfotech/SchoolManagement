@@ -34,6 +34,15 @@ namespace ConfigManager.Interfaces
         /// <returns></returns>
         public string GetJWTConfig(string key);
         #endregion
+
+        #region GetEmailConfig
+        /// <summary>
+        /// GetEmailConfig
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public string GetEmailConfig(string key);
+        #endregion
     }
     #endregion
 }
