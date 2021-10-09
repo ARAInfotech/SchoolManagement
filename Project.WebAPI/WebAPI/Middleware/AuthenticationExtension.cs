@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
+using ConfigManager.Interfaces;
 #endregion
 
 namespace WebAPI.Middleware
@@ -21,9 +22,9 @@ namespace WebAPI.Middleware
     {
 
         #region AddTokenAuthentication
-        public static IServiceCollection AddTokenAuthentication(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddTokenAuthentication(this IServiceCollection services, IConfigurationManager config)
         {
-            var key = Encoding.ASCII.GetBytes(config["Jwt:Key"]);
+            var key = Encoding.ASCII.GetBytes(config.GetJWTConfig("Key"));
 
             services.AddAuthentication(x =>
             {
@@ -37,8 +38,8 @@ namespace WebAPI.Middleware
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidIssuer = config["Jwt:Issuer"],
-                    ValidAudience = config["Jwt:Audience"]
+                    ValidIssuer = config.GetJWTConfig("Issuer"),
+                    ValidAudience = config.GetJWTConfig("Audience")
                 };
 
                 x.Events = new JwtBearerEvents()
